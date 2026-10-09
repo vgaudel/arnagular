@@ -1,0 +1,12 @@
+<h2> Exercices — Signals & Computed Signals en Angular </h2>
+
+<select [(ngModel)]="selectedComponent" (change)="goToExercice()">
+    @for(comp of composants ; track comp){
+    <option [ngValue]="comp">{{comp}}</option>
+    }
+</select>
+
+
+<router-outlet/>
+
+

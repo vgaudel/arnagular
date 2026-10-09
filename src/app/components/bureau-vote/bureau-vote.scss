@@ -1,0 +1,13 @@
+.vote-box {
+  padding: 12px;
+  border: 2px dashed #1976d2;
+  border-radius: 8px;
+  display: inline-block;
+
+  button {
+    margin: 4px;
+    padding: 6px 14px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+}

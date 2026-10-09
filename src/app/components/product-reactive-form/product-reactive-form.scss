@@ -1,0 +1,21 @@
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 400px;
+  margin: 2rem auto;
+}
+
+.auth-error {
+  color: #b00020;
+  margin: 0;
+}
+
+.auth-link {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.price-right-align {
+  text-align: right;
+}

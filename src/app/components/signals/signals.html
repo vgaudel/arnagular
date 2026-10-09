@@ -1,0 +1,44 @@
+<h2>Les signals (suppression de ZoneJs)</h2>
+
+<div>
+    <h3 (click)="log()">1. Illustration du changement non détecté</h3>
+    <p>Count1: {{count1}}</p>
+    <p>Count2: {{count2()}}</p>
+</div>
+
+<div>
+    <h3>2. Computed</h3>
+    <p>PrixHT: {{prixHT()}}</p>
+    <p>TVA: {{tva()}}</p>
+    <hr>
+    <p>PrixTTC: {{prixTTC()}}</p>
+</div>
+
+
+<div>
+    <h3>3. .update() : modifier un signal à partir de sa valeur précédente</h3>
+    <p>Compteur: {{compteur()}}</p>
+    <button (click)="decrementer()">-</button>
+    <button (click)="incrementer()">+</button> 
+</div>
+
+<div>
+    <h3>4. Signal de type tableau (mise à jour d'un immuable)</h3>
+    <ul>
+        @for (fruitItem of panier(); track $index) {
+            <li>
+                {{fruitItem}}
+            </li>
+        }
+    </ul>
+    <button (click)="ajouterFruit('Orange')">Ajouter Orange</button>
+</div>
+
+<div>
+    <h3>5. untracked() : lire un signal sans s'y abonner</h3>
+    <p>Score : {{score()}}</p>
+    <p>Niveau : {{niveau()}}</p>
+    <button (click)="gagnerPoints()">Gagner 10 pts</button>
+    <button (click)="monterNiveau()">Monter niveau</button>
+    <p><em>Ouvre la console : "Gagner 10 pts" écrit un log, "Monter niveau" n'en écrit pas.</em></p>
+</div>

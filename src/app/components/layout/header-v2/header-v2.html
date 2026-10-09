@@ -1,0 +1,33 @@
+<mat-toolbar
+    class="header-v2"
+    [style.--couleur-ombre]="preferenceService.couleurPreferee()">
+    <!-- Logo + titre -->
+    <span class="brand" (click)="goToWelcome()">
+        <img src="beard.svg" alt="logo" width="30px" height="30px" />
+        <b>{{ titleHeader() | titlecase }}</b>
+    </span>
+
+    <span class="spacer"></span>
+
+    <!-- Navigation Desktop -->
+    <nav class="links">
+        @for (link of navLinks; track link.path){
+            <a matButton [routerLink]="link.path" routerLinkActive="active">{{link.label}}</a>
+        }    
+    </nav>
+
+    <button 
+    matIconButton 
+    class="burger"
+    [matMenuTriggerFor]="mobileMenu"
+    aria-label="Ouvrir le menu de navigation">
+        <mat-icon>menu</mat-icon>
+    </button>
+
+    <mat-menu #mobileMenu="matMenu">
+        @for (link of navLinks; track link.path){
+            <a mat-menu-item [routerLink]="link.path" routerLinkActive="active">{{link.label}}</a>
+        } 
+    </mat-menu>
+
+</mat-toolbar>

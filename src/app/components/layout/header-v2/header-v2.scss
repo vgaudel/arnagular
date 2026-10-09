@@ -1,0 +1,47 @@
+/* La barre du header : logo à gauche, liens à droite */
+.header-v2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 12px 0 var(--couleur-ombre);
+}
+
+/* Logo + titre, cliquable */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+/* Espace vide qui pousse les liens tout à droite */
+.spacer {
+  flex: 1;
+}
+
+/* La liste des liens (visible sur grand écran) */
+.links {
+  display: flex;
+  gap: 0.25rem;
+  font-size: medium;
+}
+
+/* Le bouton burger (caché sur grand écran) */
+.burger {
+  display: none;
+}
+
+/* Le lien de la page courante */
+.active {
+  font-weight: 700;
+}
+
+/* Petit écran (< 900px) : on cache les liens, on montre le burger */
+@media (max-width: 1150px) {
+  .links {
+    display: none;
+  }
+  .burger {
+    display: inline-flex;
+  }
+}

@@ -1,0 +1,8 @@
+<h2>Input: Produits</h2>
+
+<div class="grille">
+@for(produitItem of produits ; track produitItem.ref; let even = $even){
+    <app-produit-card [produit]="produitItem" [estEnRupture]="even"/>
+}
+
+</div>

@@ -1,0 +1,13 @@
+<h2>Exercices — Input properties et Output events en Angular</h2>
+
+@if(isIndiceOutOfBounds){
+    <p style="color:red;">L'exercice que vous cherchez n'existe pas !</p>
+}
+
+<select [(ngModel)]="selectedComponent" (change)="goToExercice()">
+    @for(comp of composants ; track comp){
+    <option [ngValue]="comp">{{comp}}</option>
+    }
+</select>
+
+<router-outlet/>

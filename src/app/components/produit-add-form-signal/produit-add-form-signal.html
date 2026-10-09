@@ -1,0 +1,104 @@
+<div>
+
+    <h3>Ajouter un produit (Signal Forms)</h3>
+
+    <!--
+        Avec les Signal Forms on utilise un <form> HTML STANDARD : on écoute
+        l'événement DOM natif (submit), et on n'utilise NI ngSubmit NI [formGroup].
+
+        Pourquoi $event.preventDefault() est-il nécessaire ici ?
+        - Par défaut, soumettre un <form> (clic sur type="submit" ou touche Entrée)
+          déclenche le comportement natif du navigateur : RECHARGER la page.
+          Cela réinitialiserait tout l'état (signals, formulaire) et empêcherait
+          onSubmit() de faire son travail dans une logique SPA.
+        - $event.preventDefault() ANNULE ce rechargement automatique.
+
+        Différence clé avec les Reactive/Template-driven Forms :
+        - (ngSubmit) est une directive Angular qui appelle preventDefault() POUR NOUS.
+        - Ici, avec l'événement natif (submit), aucune directive ne l'intercepte :
+          c'est donc à NOUS de l'appeler manuellement.
+
+        Astuce : on garde (submit) plutôt qu'un (click) sur le bouton, car cela
+        conserve la soumission au clavier (touche Entrée) → plus accessible.
+    -->
+    <form (submit)="$event.preventDefault(); onSubmit()" novalidate class="auth-form">
+
+        <!--
+            @let crée une variable locale au template.
+            On APPELLE le champ comme une fonction « produitForm.name() » pour
+            obtenir son état réactif (errors, touched, ...).
+        -->
+        @let nameField = produitForm.name();
+        @let descriptionField = produitForm.description();
+        @let priceField = produitForm.price();
+        @let categoryField = produitForm.category();
+        @let stockField = produitForm.stock();
+
+        <mat-form-field appearance="outline">
+            <mat-label>
+                Nom du produit
+            </mat-label>
+            <!-- [formField] relie l'<input> au champ « name » du formulaire signal. -->
+            <input matInput [formField]="produitForm.name" placeholder="Entrez le nom ici">
+            @if (nameField.touched()) {
+                @for (erreur of nameField.errors(); track erreur.kind) {
+                    <mat-error>{{ erreur.message }}</mat-error>
+                }
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>
+                Description
+            </mat-label>
+            <input matInput [formField]="produitForm.description" placeholder="Ex. Pack d'outils...">
+            @if (descriptionField.touched()) {
+                @for (erreur of descriptionField.errors(); track erreur.kind) {
+                    <mat-error>{{ erreur.message }}</mat-error>
+                }
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>
+                Prix
+            </mat-label>
+            <input matInput type="number" step="0.01" [formField]="produitForm.price" placeholder="99.99">
+            @if (priceField.touched()) {
+                @for (erreur of priceField.errors(); track erreur.kind) {
+                    <mat-error>{{ erreur.message }}</mat-error>
+                }
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>
+                Categorie
+            </mat-label>
+            <input matInput [formField]="produitForm.category" placeholder="Ex. Matériel jardinage">
+            @if (categoryField.touched()) {
+                @for (erreur of categoryField.errors(); track erreur.kind) {
+                    <mat-error>{{ erreur.message }}</mat-error>
+                }
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>
+                Stock
+            </mat-label>
+            <input matInput type="number" [formField]="produitForm.stock" placeholder="123">
+            @if (stockField.touched()) {
+                @for (erreur of stockField.errors(); track erreur.kind) {
+                    <mat-error>{{ erreur.message }}</mat-error>
+                }
+            }
+        </mat-form-field>
+
+        <div>
+            <button mat-raised-button type="submit">Enregistrer</button>
+        </div>
+
+    </form>
+
+</div>
