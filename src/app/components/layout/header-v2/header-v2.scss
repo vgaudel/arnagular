@@ -36,6 +36,11 @@
   font-weight: 700;
 }
 
+/* Nom de l'utilisateur connecté */
+.user {
+  font-weight: 600;
+}
+
 /* Petit écran (< 900px) : on cache les liens, on montre le burger */
 @media (max-width: 1150px) {
   .links {

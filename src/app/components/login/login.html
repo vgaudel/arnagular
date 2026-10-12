@@ -1,0 +1,40 @@
+<div class="login">
+
+    @if (auth.isLoggedIn()) {
+        <h2>Connecté</h2>
+        <p>Vous êtes connecté en tant que <strong>{{ auth.currentUser()?.username }}</strong>.</p>
+        <button matButton="outlined" type="button" (click)="logout()">Se déconnecter</button>
+    } @else {
+        <h2>Connexion</h2>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="login-form">
+            @let usernameFC = form.get('username');
+            @let passwordFC = form.get('password');
+
+            <mat-form-field appearance="outline">
+                <mat-label>Nom d'utilisateur</mat-label>
+                <input matInput formControlName="username" autocomplete="username">
+                @if (usernameFC?.hasError('required')) {
+                    <mat-error>Le nom d'utilisateur est obligatoire</mat-error>
+                }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Mot de passe</mat-label>
+                <input matInput type="password" formControlName="password" autocomplete="current-password">
+                @if (passwordFC?.hasError('required')) {
+                    <mat-error>Le mot de passe est obligatoire</mat-error>
+                }
+            </mat-form-field>
+
+            @if (errorMessage()) {
+                <p class="login-error">{{ errorMessage() }}</p>
+            }
+
+            <button matButton="filled" type="submit" [disabled]="loading()">
+                {{ loading() ? 'Connexion...' : 'Se connecter' }}
+            </button>
+        </form>
+    }
+
+</div>

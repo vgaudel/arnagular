@@ -1,6 +1,7 @@
 import { Component, inject, input } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { PreferenceService } from '../../../services/preference-service';
+import { AuthService } from '../../../services/auth-service';
 import { MatToolbar } from '@angular/material/toolbar';
 import { TitleCasePipe } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
@@ -22,6 +23,7 @@ export class HeaderV2 {
 
   private router = inject(Router);
   private preferenceService = inject(PreferenceService);
+  protected auth = inject(AuthService);
 
     titleHeader = input.required<string>();
 
@@ -42,6 +44,11 @@ export class HeaderV2 {
   ];
 
   goToWelcome() {
+    this.router.navigate(['welcome']);
+  }
+
+  logout() {
+    this.auth.logout();
     this.router.navigate(['welcome']);
   }
 }

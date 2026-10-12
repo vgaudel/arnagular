@@ -25,6 +25,8 @@ import { Ex10Filtre } from './components/exos-signals/ex10-filtre/ex10-filtre';
 import { preferenceGuard } from './guards/preference-guard';
 import { ProduitTableHttp } from './components/produit-table-http/produit-table-http';
 import { ProduitAddFormSignal } from './components/produit-add-form-signal/produit-add-form-signal';
+import { Login } from './components/login/login';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
     { path: 'welcome', component: Welcome},
@@ -51,12 +53,13 @@ export const routes: Routes = [
       ]},
 
     { path: 'produits', component: ProduitList},
-    { path: 'produitsv2', component: ProduitTable},
+    { path: 'produitsv2', component: ProduitTable, canActivate: [authGuard]},
     { path: 'produitshttp', component: ProduitTableHttp},
     { path: 'votation', component: BureauVoteList},
     { path: 'exosio', component: ExosIO},
     { path: 'pipes', component: PipesExemples},
     { path: 'signalform', component: ProduitAddFormSignal},
+    { path: 'login', component: Login},
     { path: '**', component: NotFound},
 ];
  

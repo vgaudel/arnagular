@@ -16,6 +16,14 @@
         }    
     </nav>
 
+    <!-- Zone d'authentification -->
+    @if (auth.isLoggedIn()) {
+        <span class="user">{{ auth.currentUser()?.username }}</span>
+        <button matButton type="button" (click)="logout()">Déconnexion</button>
+    } @else {
+        <a matButton routerLink="/login">Connexion</a>
+    }
+
     <button 
     matIconButton 
     class="burger"
