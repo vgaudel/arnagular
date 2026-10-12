@@ -87,6 +87,8 @@ export const routes: Routes = [
 ];
 ```
 
+> **Un guard n'est pas de la sécurité** : il ne fait que masquer une page. Le code Angular s'exécute chez l'utilisateur, qui peut le contourner ou appeler directement l'API. La vraie protection se fait **côté serveur**. Une mise en œuvre complète (login, token JWT, intercepteur, `authGuard` sur `produitsv2`) est décrite dans [13_Authentification_JWT.md](13_Authentification_JWT.md).
+
 ---
 
 ## 5. `CanDeactivate` : confirmer avant de quitter
