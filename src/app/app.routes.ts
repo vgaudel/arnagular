@@ -53,8 +53,8 @@ export const routes: Routes = [
       ]},
 
     { path: 'produits', component: ProduitList},
-    { path: 'produitsv2', component: ProduitTable, canActivate: [authGuard]},
-    { path: 'produitshttp', component: ProduitTableHttp},
+    { path: 'produitsv2', component: ProduitTable},
+    { path: 'produitshttp', component: ProduitTableHttp, canActivate: [authGuard]},
     { path: 'votation', component: BureauVoteList},
     { path: 'exosio', component: ExosIO},
     { path: 'pipes', component: PipesExemples},

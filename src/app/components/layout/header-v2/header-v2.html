@@ -9,6 +9,14 @@
 
     <span class="spacer"></span>
 
+  <!-- Zone d'authentification -->
+    @if (auth.isLoggedIn()) {
+        <span class="user">{{ auth.currentUser()?.username }}</span>
+        <button matButton="filled" type="button" (click)="logout()">Déconnexion</button>
+    } @else {
+        <a matButton="filled" routerLink="/login">Connexion</a>
+    }
+
     <!-- Navigation Desktop -->
     <nav class="links">
         @for (link of navLinks; track link.path){
@@ -16,13 +24,7 @@
         }    
     </nav>
 
-    <!-- Zone d'authentification -->
-    @if (auth.isLoggedIn()) {
-        <span class="user">{{ auth.currentUser()?.username }}</span>
-        <button matButton type="button" (click)="logout()">Déconnexion</button>
-    } @else {
-        <a matButton routerLink="/login">Connexion</a>
-    }
+  
 
     <button 
     matIconButton 
